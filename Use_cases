@@ -1,0 +1,79 @@
+@startuml
+title Use Case Diagram – PMSAT
+
+actor Admin
+actor Manager
+actor Lecturer
+actor Student
+actor GitHub
+actor VSCode
+
+package "Project Management" {
+    usecase "Login / Logout" as UC_Login
+    usecase "Manage user accounts" as UC_UserMgmt
+    usecase "Create and assign tasks" as UC_Tasks
+    usecase "Track timeline & milestones" as UC_Timeline
+    usecase "Generate progress reports" as UC_Report
+    usecase "Team member management" as UC_TeamMgmt
+}
+
+package "Code Analysis" {
+    usecase "Connect to GitHub/GitLab" as UC_GitConnect
+    usecase "Track commits" as UC_TrackCommits
+    usecase "Analyze code quality" as UC_CodeAnalysis
+    usecase "Detect errors & warnings" as UC_DetectIssues
+    usecase "Provide code suggestions" as UC_Suggestions
+}
+
+package "Reporting & Analytics" {
+    usecase "Visualize project progress" as UC_ProgressViz
+    usecase "View code quality trends" as UC_Trend
+    usecase "Evaluate team contribution" as UC_Eval
+}
+
+package "Learning & Tutorial" {
+    usecase "View project management tips" as UC_PMHelp
+    usecase "Suggest development improvements" as UC_DevHelp
+}
+
+package "User Management" {
+    usecase "Role-based access control" as UC_Role
+    usecase "Authentication & authorization" as UC_Auth
+}
+
+' Relationships
+Admin --> UC_Login
+Admin --> UC_UserMgmt
+Admin --> UC_Auth
+Admin --> UC_Role
+
+Manager --> UC_Login
+Manager --> UC_Tasks
+Manager --> UC_Timeline
+Manager --> UC_Report
+Manager --> UC_TeamMgmt
+Manager --> UC_ProgressViz
+Manager --> UC_Eval
+
+Lecturer --> UC_Login
+Lecturer --> UC_Report
+Lecturer --> UC_Eval
+Lecturer --> UC_CodeAnalysis
+Lecturer --> UC_Trend
+Lecturer --> UC_PMHelp
+
+Student --> UC_Login
+Student --> UC_Tasks
+Student --> UC_TeamMgmt
+Student --> UC_GitConnect
+Student --> UC_TrackCommits
+Student --> UC_DetectIssues
+Student --> UC_Suggestions
+Student --> UC_PMHelp
+Student --> UC_DevHelp
+Student --> UC_ProgressViz
+
+GitHub --> UC_GitConnect
+VSCode --> UC_GitConnect
+
+@enduml
